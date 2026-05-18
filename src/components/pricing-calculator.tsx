@@ -29,7 +29,8 @@ export function PricingCalculator() {
             CloudHost Pricing
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-pretty text-lg text-muted-foreground">
-            Build your perfect hosting plan. Scale seamlessly as your business grows.
+            Build your perfect hosting plan. Scale seamlessly as your business
+            grows.
           </p>
         </div>
 

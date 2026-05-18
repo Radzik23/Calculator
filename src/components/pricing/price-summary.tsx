@@ -24,7 +24,9 @@ export function PriceSummary({
 }: PriceSummaryProps) {
   const plan = getPlanById(planId);
   const storagePrice = getStoragePrice(storageAmount);
-  const selectedAddons = addons.filter((addon) => selectedAddonIds.includes(addon.id));
+  const selectedAddons = addons.filter((addon) =>
+    selectedAddonIds.includes(addon.id)
+  );
 
   return (
     <div className="rounded-2xl border border-primary/30 bg-card p-6 shadow-xl shadow-primary/5">
@@ -54,7 +56,9 @@ export function PriceSummary({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Check className="size-4 text-primary" />
-            <span className="text-sm text-foreground">{storageAmount}GB Storage</span>
+            <span className="text-sm text-foreground">
+              {storageAmount}GB Storage
+            </span>
           </div>
           <span className="text-sm font-medium text-foreground">
             {formatUsd(storagePrice)}
