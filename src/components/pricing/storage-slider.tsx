@@ -26,14 +26,18 @@ export function StorageSlider({ value, onValueChange }: StorageSliderProps) {
         </div>
         <div className="text-right">
           <p className="text-sm text-muted-foreground">Monthly</p>
-          <p className="text-lg font-semibold text-primary">{formatUsd(storagePrice)}</p>
+          <p className="text-lg font-semibold text-primary">
+            {formatUsd(storagePrice)}
+          </p>
         </div>
       </div>
 
       <div className="space-y-4">
         <Slider
           value={[value]}
-          onValueChange={(values) => onValueChange(values[0] ?? storageConfig.min)}
+          onValueChange={(values) =>
+            onValueChange(values[0] ?? storageConfig.min)
+          }
           min={storageConfig.min}
           max={storageConfig.max}
           step={storageConfig.step}

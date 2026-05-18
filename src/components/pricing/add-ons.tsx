@@ -57,7 +57,9 @@ export function AddOns({ selectedAddonIds, onToggleAddon }: AddOnsProps) {
                   {formatUsd(addon.price)}/mo
                 </span>
               </div>
-              <p className="mt-1 text-sm text-muted-foreground">{addon.description}</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {addon.description}
+              </p>
             </div>
           </label>
         );

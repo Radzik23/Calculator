@@ -15,7 +15,10 @@ interface PlanSelectorProps {
   onPlanChange: (planId: string) => void;
 }
 
-export function PlanSelector({ selectedPlanId, onPlanChange }: PlanSelectorProps) {
+export function PlanSelector({
+  selectedPlanId,
+  onPlanChange,
+}: PlanSelectorProps) {
   return (
     <div className="grid gap-4 sm:grid-cols-3">
       {plans.map((plan) => {
@@ -60,7 +63,9 @@ export function PlanSelector({ selectedPlanId, onPlanChange }: PlanSelectorProps
               )}
             </div>
 
-            <h3 className="text-lg font-semibold text-foreground">{plan.name}</h3>
+            <h3 className="text-lg font-semibold text-foreground">
+              {plan.name}
+            </h3>
 
             <div className="mt-2 flex items-baseline gap-1">
               <span className="text-3xl font-bold text-foreground">
@@ -69,7 +74,9 @@ export function PlanSelector({ selectedPlanId, onPlanChange }: PlanSelectorProps
               <span className="text-sm text-muted-foreground">/month</span>
             </div>
 
-            <p className="mt-2 text-sm text-muted-foreground">{plan.description}</p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              {plan.description}
+            </p>
 
             <ul className="mt-4 space-y-2">
               {plan.features.map((feature) => (

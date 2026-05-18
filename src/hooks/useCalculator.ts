@@ -17,13 +17,14 @@ export function useCalculator() {
   };
 
   const totalPrice = useMemo(() => {
-    const planPrice = plans.find((p) => p.id === selectedPlanId)?.basePrice || 0;
+    const planPrice =
+      plans.find((p) => p.id === selectedPlanId)?.basePrice || 0;
     const extraStorage = storageAmount - storageConfig.min;
     const storagePrice = extraStorage * storageConfig.pricePerGB;
 
     const addonsPrice = selectedAddonIds.reduce((sum, addonId) => {
-        const addon = addons.find((a) => a.id === addonId);
-        return sum + (addon ? addon.price : 0);
+      const addon = addons.find((a) => a.id === addonId);
+      return sum + (addon ? addon.price : 0);
     }, 0);
 
     return planPrice + storagePrice + addonsPrice;

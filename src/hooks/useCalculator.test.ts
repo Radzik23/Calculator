@@ -29,13 +29,16 @@ describe('useCalculator', () => {
     const { result } = renderHook(() => useCalculator());
     const extraGB = 20;
     const expectedStorageCost =
-      (storageConfig.min + extraGB - storageConfig.min) * storageConfig.pricePerGB;
+      (storageConfig.min + extraGB - storageConfig.min) *
+      storageConfig.pricePerGB;
 
     act(() => {
       result.current.setStorageAmount(storageConfig.min + extraGB);
     });
 
-    expect(result.current.totalPrice).toBe(plans[0].basePrice + expectedStorageCost);
+    expect(result.current.totalPrice).toBe(
+      plans[0].basePrice + expectedStorageCost
+    );
   });
 
   it('adds and removes addons via toggleAddon', () => {
