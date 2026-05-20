@@ -1,36 +1,71 @@
-# CloudHost Pricing Calculator ☁️
+# CloudHost Pricing Calculator
 
-A modern, interactive, and highly optimized pricing calculator built as a Proof-of-Concept for "CloudHost". 
+A modern, interactive pricing calculator built as a Proof-of-Concept for **CloudHost**.
 
-**🚀 Live Demo:** [https://calculator-rho-blue.vercel.app/]
+**Live Demo:** [calculator-rho-blue.vercel.app](https://calculator-rho-blue.vercel.app/)
 
-## 🏗️ Architecture & Approach
-Instead of putting all the logic into a single UI file, I focused on a clean, scalable architecture:
+## Architecture
 
-1. **Data Separation:** All pricing data and configurations are extracted into `src/data/pricingData.ts`. This acts as a mock database. If pricing changes, we update one file, not the UI components.
-2. **Custom Hook (`useCalculator`):** The core business logic and math are encapsulated in a tested React hook. It uses `useMemo` to prevent unnecessary re-renders when calculating the total price.
-3. **Smart vs Dumb Components:** The main `PricingCalculator` acts as a container (Smart), holding the state and passing it down via props to isolated, reusable UI components (Dumb) like `StorageSlider` or `PlanSelector`.
+Instead of putting all logic into a single UI file, the project uses a small, scalable structure:
 
-## 🤖 AI-First Mindset
-This project was built leveraging AI tools as engineering assistants, allowing me to focus on architecture, performance, and best practices:
-* **UI Generation (Vercel v0):** Used to rapidly prototype the visual layout based on shadcn/ui.
-* **Logic Integration (Cursor AI):** Assisted in refactoring the static UI components to seamlessly connect with my custom `useCalculator` hook.
-* **Automated Testing:** Used AI to help write comprehensive `Vitest` unit tests for the pricing logic, ensuring dynamic resilience against future data changes.
+1. **Data layer** — `src/data/pricingData.ts` holds plans, storage rules, and add-ons. Pricing changes live in one place.
+2. **Business logic** — `useCalculator` encapsulates state and price calculation (`useMemo` for `totalPrice`). Covered by Vitest unit tests.
+3. **Container / presentational components** — `PricingCalculator` owns state from the hook and passes it down via props to UI pieces such as `PlanSelector`, `StorageSlider`, `AddOns`, and `PriceSummary`.
 
-## ✨ "Wow" Factors (Beyond Requirements)
-* **PWA (Progressive Web App):** Configured with a manifest and Service Worker. The calculator can be installed directly on a mobile device or desktop for offline-ready, app-like experience (perfect for Sales Reps).
-* **Accessibility (a11y):** Full keyboard navigation support (Tab, Space, Arrows for the slider) and ARIA attributes via Radix UI primitives.
-* **Code Quality:** Configured ESLint, Prettier, and basic CI pipeline concepts.
+```
+src/
+├── data/pricingData.ts
+├── hooks/useCalculator.ts
+├── components/pricing-calculator.tsx
+└── components/pricing/   # plan-selector, storage-slider, add-ons, price-summary
+```
 
-## 🛠️ Tech Stack
-* **Framework:** Next.js (App Router) + TypeScript
-* **Styling:** Tailwind CSS
-* **Testing:** Vitest + React Testing Library
-* **Deployment:** Vercel
+## Additional features
 
-## 🚀 How to run locally
-\`\`\`bash
+- **PWA** — Web manifest and service worker via `@ducanh2912/next-pwa` (enabled in production; disabled in `npm run dev`). Installable on desktop and mobile.
+- **Accessibility** — Keyboard navigation and Radix UI primitives (slider, checkbox).
+- **CI** — GitHub Actions: Prettier, ESLint, unit tests, production build.
+
+## AI-assisted development
+
+Built with AI as an engineering assistant, while architecture and integration decisions stayed manual:
+
+- **Vercel v0** — UI layout prototype (shadcn-style components).
+- **Cursor** — Refactoring v0 components to connect with `useCalculator` and `pricingData`.
+- **Vitest** — Unit tests for pricing logic in the hook.
+
+## Tech stack
+
+- **Framework:** Next.js 16 (App Router) + TypeScript + React 19
+- **Styling:** Tailwind CSS 4
+- **UI:** Radix UI, Lucide icons
+- **Testing:** Vitest + React Testing Library
+- **Deployment:** Vercel
+
+## Getting started
+
+**Requirements:** Node.js 20+
+
+```bash
 npm install
 npm run dev
-\`\`\`
-To test the PWA features locally, run: `npm run build && npm run start`.
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+### Other scripts
+
+```bash
+npm test              # run unit tests (useCalculator)
+npm run test:watch    # tests in watch mode
+npm run lint          # ESLint
+npm run format        # Prettier
+npm run build         # production build
+npm run start         # serve production build (also needed to verify PWA)
+```
+
+To verify PWA locally (service worker is off in development):
+
+```bash
+npm run build && npm run start
+```

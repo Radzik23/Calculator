@@ -20,7 +20,7 @@ export const plans: Plan[] = [
     name: 'Basic',
     basePrice: 9,
     description: 'For personal projects and small sites',
-    features: ['1 Website', '10GB Storage', 'Basic Support'],
+    features: ['1 Website', 'Basic Support'],
   },
   {
     id: 'pro',
@@ -29,7 +29,6 @@ export const plans: Plan[] = [
     description: 'For growing businesses and teams',
     features: [
       'Unlimited Websites',
-      '100GB Storage',
       'Priority Support',
       'Custom Domains',
     ],
@@ -42,7 +41,6 @@ export const plans: Plan[] = [
     description: 'For large-scale applications',
     features: [
       'Unlimited Everything',
-      '500GB Storage',
       '24/7 Support',
       'SLA Guarantee',
       'Dedicated Account Manager',

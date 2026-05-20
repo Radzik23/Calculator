@@ -2,6 +2,7 @@
 
 import { Slider } from '@/components/ui/slider';
 import { formatUsd, getStoragePrice, storageConfig } from '@/data/pricingData';
+import { cn } from '@/lib/utils';
 import { HardDrive } from 'lucide-react';
 
 interface StorageSliderProps {
@@ -50,9 +51,10 @@ export function StorageSlider({ value, onValueChange }: StorageSliderProps) {
               key={marker}
               type="button"
               onClick={() => onValueChange(marker)}
-              className={`transition-colors hover:text-primary ${
-                value === marker ? 'font-medium text-primary' : ''
-              }`}
+              className={cn(
+                'transition-colors hover:text-primary',
+                value === marker && 'font-medium text-primary'
+              )}
             >
               {marker}GB
             </button>
